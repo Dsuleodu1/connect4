@@ -14,7 +14,7 @@ const COLORS = {
   
   /*----- event listeners -----*/
   document.getElementById('markers').addEventListener('click', handleDrop);
-  
+  document.getElementById('resetBtn').addEventListener('click', init);
   
   /*----- functions -----*/
   init();
@@ -24,13 +24,14 @@ const COLORS = {
     board = [
       [0, 0, 0, 0],  // column 0
       [0, 0, 0, 0],  // column 1
-      [1, 1, 1, 0],  // column 2
+      [0, 0, 0, 0],  // column 2
       [0, 0, 0, 0],  // column 3
       [0, 0, 0, 0],  // column 4
     ];
     turn = 1;
     render();
   }
+
   
   function render() {
     // Iterate over the column arrays
