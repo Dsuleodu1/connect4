@@ -15,6 +15,7 @@ const COLORS = {
   /*----- event listeners -----*/
   document.getElementById('markers').addEventListener('click', handleDrop);
   document.getElementById('resetBtn').addEventListener('click', init);
+  document.getElementById('playAgn').addEventListener('click', init);
   
   /*----- functions -----*/
   init();
@@ -61,3 +62,4 @@ const COLORS = {
     turn *= -1;
     render();
   }
+  
