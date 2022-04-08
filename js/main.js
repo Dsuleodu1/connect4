@@ -20,6 +20,8 @@ const COLORS = {
   /*----- functions -----*/
   init();
   
+  
+  
   // initialize state, then call render()
   function init() {
     board = [
@@ -59,7 +61,53 @@ const COLORS = {
     const colArr = board[colIdx];
     const rowIdx = colArr.indexOf(0);
     colArr[rowIdx] = turn;
+    const winner = getWinner(colIdx, rowIdx);
+    if (winner != null) {
+      console.log(winner);
+    } 
     turn *= -1;
     render();
   }
+  function countNumVert(colIdx, rowIdx) {
+    const player = board[colIdx][rowIdx];
+   let count = null;
+     //count up
+     let idx = rowIdx + 1;
+     while (idx < board[colIdx].length && board[colIdx][idx] === player) {
+       count++;
+       idx++;
+     }
+     //count down
+     idx = rowIdx - 1;
+     while (idx >= 0 && board[colIdx][idx] === player) {
+       count++;
+       idx--;
+     }
+     
+     return count === 3 ? player : null;
+   }
+   function countNumHorz(colIdx, rowIdx) {
+    const player = board[colIdx][rowIdx];
+   let count = 1;
+     //count right
+     let idx = colIdx + 1;
+     while (idx < board.length && board[idx][rowIdx] === player) {
+       count++;
+       idx++;
+     }
+     //count left
+     idx = colIdx - 1;
+     while (idx >= 0 && board[idx][rowIdx] === player) {
+       count++;
+       idx--;
+     }
+     return count >= 3 ? player : null;
+   }
+   // console.log(countNumVert(1, 3))
+   function getWinner(colIdx, rowIdx) {
+     return countNumVert(colIdx, rowIdx)
+     || countNumHorz(colIdx, rowIdx)
+    //  || checkDiagRight(colIdx, rowIdx)
+    //  || checkDiagLeft(colIdx, rowIdx);
+   }
   
